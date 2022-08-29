@@ -6,6 +6,7 @@ import type { Key } from "@keplr-wallet/types";
 import type { GrazChain } from "../chains";
 import { defaultValues, useGrazStore } from "../store";
 import type { Maybe } from "../types/core";
+import { chainIdToPath } from "../utils/chain-id-to-path";
 import { createClients, createSigningClients } from "./clients";
 import { getKeplr } from "./keplr";
 
@@ -48,9 +49,14 @@ export async function connect(args?: ConnectArgs): Promise<Key> {
       }),
     ] as const);
 
+    // get path
+
+    const chainIdToPathRes = await chainIdToPath();
+    const path = chainIdToPathRes.get(chain.chainId);
+
     useGrazStore.setState({
       account,
-      activeChain: chain,
+      activeChain: { ...chain, path },
       clients,
       offlineSigner,
       offlineSignerAmino,

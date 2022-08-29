@@ -20,6 +20,7 @@ export interface GrazChain {
     price: string;
     denom: string;
   };
+  path?: string;
 }
 
 /**

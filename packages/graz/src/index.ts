@@ -9,3 +9,4 @@ export * from "./hooks/chains";
 export * from "./hooks/clients";
 export * from "./hooks/keplr";
 export * from "./provider";
+export { getGrazChain } from "./utils/get-chain";

@@ -1,5 +1,6 @@
 import { Center, HStack, Spacer, Stack, Text } from "@chakra-ui/react";
-import { useAccount } from "graz";
+import { getGrazChain, useAccount, useActiveChain } from "graz";
+import { useEffect } from "react";
 import { BalanceList } from "ui/balance-list";
 import { ChainSwitcher } from "ui/chain-switcher";
 import { ConnectButton } from "ui/connect-button";
@@ -9,6 +10,13 @@ import { ToggleTheme } from "ui/toggle-theme";
 
 export default function HomePage() {
   const { data: accountData } = useAccount();
+  const activeChain = useActiveChain();
+
+  useEffect(() => {
+    (async () => {
+      await getGrazChain("juno").then((item) => console.log(item));
+    })();
+  }, []);
 
   return (
     <Center minH="100vh">

@@ -22,7 +22,7 @@ export function ConnectButton() {
     },
   });
 
-  const { connect, isSupported } = useConnect({
+  const { connectAsync, isSupported } = useConnect({
     onSuccess: () => console.log("wallet connected"),
   });
 
@@ -31,7 +31,7 @@ export function ConnectButton() {
   });
 
   function handleConnect() {
-    return (isConnected ? disconnect : connect)();
+    return (isConnected ? disconnect : connectAsync)();
   }
 
   return (
